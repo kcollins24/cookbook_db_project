@@ -1,0 +1,56 @@
+{% block content %}
+<head>
+<style>
+body{background-image:url("{{ url_for('static', filename='/img/veggie_repeat1.jpg') }}");}
+.container {
+  display: flex;
+  text-align: center;
+  justify-content: center; /* center the child */
+}
+h1 {
+    display: flex;
+    padding:5px;font-size:35px;background-color:green;color:#ffffff;
+}
+
+p {
+    display: flex;
+    padding:5px;font-size:35px;background-color:green;color:#ffffff;
+}
+
+a {
+    /*display: flex;*/
+    padding:5px;font-size:20px;background-color:white;color:hotpink;
+}
+
+</style>
+</head>
+
+	{% for ckbk in ckbk_info %}
+		<div class="container">
+		<h1>{{ ckbk.title }}</h1>
+		</div>
+
+		{% if current_user.name == ckbk.owner %}
+			<div class="container">
+			<a href="{{url_for('main_bp.recipe_creation')}}">Add a new recipe</a>
+			<a href="{{url_for('main_bp.recipe_creation_from_url')}}">Add a new recipe from url</a>
+			</div>
+		{% endif %}
+	{% endfor %}
+	
+	<div class="container">
+	<h1> Recipes: </h1>
+	</div>
+        {% for recipe in recipes %}
+		<div class="container">
+                <a href="{{url_for('main_bp.dis_recipe', rid=recipe.id)}}">{{recipe.title}}</a>
+		</div>
+        {% endfor %}
+	<div class="container">
+	<p>------------------------------------------------------------</p>
+	</div>
+	<div class="container">
+	<a href="{{ url_for('main_bp.usr_page', usr=current_user)}}">Return to user page</a>
+	</div>
+{% endblock %}
+

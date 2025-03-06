@@ -1,0 +1,5 @@
+{% block content %}
+	<h1> Sorry, that didn't work </h1>
+	<p> The URL in question either couldn't be accessed, or relevent information couldn't be found. Try either a different URL or manual entry. </p>
+	<a href="{{ url_for('main_bp.usr_page', usr=current_user)}}">Return to user page</a>
+{% endblock %}

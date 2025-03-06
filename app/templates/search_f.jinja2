@@ -1,0 +1,56 @@
+{% block content %}
+  <div class="form-wrapper">
+
+    <h1>Search</h1>
+
+    <p>Please choose to search either cookbooks or recipes. If only searching cookbooks, don't fill out
+       the fields 'Main Ingredient' or 'Minimum Rating.'</p>
+
+    <form method="POST" action="/search_form">
+      {{ form.csrf_token }}
+
+      <fieldset class="search_choice">
+        {{ form.search_choice.label }}
+        {{ form.search_choice }}
+      </fieldset>
+
+      <fieldset class="title">
+        {{ form.title.label }}
+        {{ form.title }}
+      </fieldset>
+
+      <fieldset class="category">
+        {{ form.category.label }}
+        {{ form.category }}
+      </fieldset>
+
+      <fieldset class="main_ingredient">
+        {{ form.main_ingredient.label }}
+        {{ form.main_ingredient }}
+      </fieldset>
+
+      <fieldset class="min_rating">
+        {{ form.min_rating.label }}
+        {{ form.min_rating }}
+      </fieldset>
+
+      <div class="submit-button">
+        {{ form.submit }}
+      </div>
+
+    </form>
+  </div>
+
+{% endblock %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+

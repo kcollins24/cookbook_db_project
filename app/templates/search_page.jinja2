@@ -1,0 +1,87 @@
+{% block content %}
+<head>
+<style>
+body{background-image:url("{{ url_for('static', filename='/img/veggie_repeat1.jpg') }}");}
+.container {
+  display: flex;
+  justify-content: center; /* center the child */
+}
+h1 {
+    display: flex;
+    padding:5px;font-size:35px;background-color:green;color:#ffffff;
+}
+
+p {
+    display: flex;
+    padding:5px;font-size:20px;background-color:white;color:darkgreen;
+}
+
+a {
+    display: flex;
+    padding:5px;font-size:20px;background-color:white;color:hotpink;
+}
+
+</style>
+</head>
+
+	<div class="container">
+        <h1>Search Results</h1>
+	</div>
+
+	{% if recipes is not none %}
+		{% if min_rating != 0.0 %}
+			{% if avg_ratings|length == 0 %}
+				<div class="container">
+				<p> No results were found </p>
+				</div>
+			{% endif %}
+        		{% for recipe in recipes %}
+				{% for rating in avg_ratings %}
+					{% if rating[0] == recipe.id and rating[1] >= min_rating %}
+						<div class="container">
+						<a href="{{url_for('main_bp.dis_recipe', rid=recipe.id)}}"><b>{{recipe.title}}</b></a>
+						</div>
+						<div class="container">
+						<p>{{recipe.description}},</p>
+						<p>Average Rating: {{rating[1]}} </p>
+						</div>
+						<div class="container">
+						<p><b>------------------------------------------------------------------------------------------------------</b></p>
+						</div>
+					{% endif %}
+				{% endfor %}
+        		{% endfor %}
+		{% else %}
+			{% for recipe in recipes %}
+				<div class="container">
+				<a href="{{url_for('main_bp.dis_recipe', rid=recipe.id)}}"><b>{{recipe.title}}</b></a> 
+				</div>
+				<div class="container">
+				<p>{{recipe.description}}</p>
+				</div>
+				<div class="container">
+                                <p><b>------------------------------------------------------------------------------------------------------</b></p>
+				</div>
+                        {% endfor %}
+		{% endif %}
+	{% endif %}
+
+	{% if cookbooks is not none %}
+		{% for ckbk in cookbooks %}
+			<div class="container">
+			<a href="{{url_for('main_bp.dis_ckbk', cid=ckbk.id)}}">{{ckbk.title}}</a>
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	{% if cookbooks is none and recipes is none %}
+		<div class="container">
+		<p> No results were found </p>
+		</div>
+	{% endif %}
+	
+	<div class="container">
+	<a href="{{url_for('main_bp.usr_page', usr =current_user )}}">Back to User Page</a>
+	<div class="container">
+{% endblock %}
+

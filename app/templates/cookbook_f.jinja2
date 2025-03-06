@@ -1,0 +1,27 @@
+
+{% block content %}
+  <div class="form-wrapper">
+
+    <h1>Create a Cookbook</h1>
+
+    <form method="POST" action="/ckbk_creation">
+      {{ form.csrf_token }}
+
+      <fieldset class="title">
+        {{ form.title.label }}
+        {{ form.title(placeholder='Homecooking') }}
+      </fieldset>
+
+      <fieldset class="category">
+        {{ form.category.label }}
+        {{ form.category }}
+      </fieldset>
+
+      <div class="submit-button">
+        {{ form.submit }}
+      </div>
+
+    </form>
+  </div>
+
+{% endblock %}

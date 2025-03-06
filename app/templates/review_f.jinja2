@@ -1,0 +1,37 @@
+{% block content %}
+  <div class="form-wrapper">
+
+    <h1>Leave a Review</h1>
+
+    <form method="POST" action="/leave_review">
+      {{ form.csrf_token }}
+
+      <fieldset class="comment">
+        {{ form.comment.label }}
+        {{ form.comment }}
+      </fieldset>
+
+      <fieldset class="stars">
+        {{ form.stars.label }}
+        {{ form.stars }}
+      </fieldset>
+
+      <div class="submit-button">
+        {{ form.submit }}
+      </div>
+
+    </form>
+  </div>
+
+{% endblock %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}

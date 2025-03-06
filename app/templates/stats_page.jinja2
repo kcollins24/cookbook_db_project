@@ -1,0 +1,45 @@
+{% block content %}
+<head>
+<style>
+body{background-image:url("{{ url_for('static', filename='/img/veggie_repeat1.jpg') }}");}
+.container {
+  display: flex;
+  justify-content: center; /* center the child */
+}
+h1 {
+    display: flex;
+    padding:5px;font-size:35px;background-color:green;color:#ffffff;
+}
+
+p {
+    display: flex;
+    padding:5px;font-size:20px;background-color:white;color:darkgreen;
+}
+
+a {
+    /*display: flex;*/
+    padding:5px;font-size:20px;background-color:#ffffe6;color:hotpink;
+}
+
+</style>
+</head>
+	<div class="container">
+	<h1> User Statistics </h1>
+	</div>
+	{% for stats in all_stats %}
+		{% for stat in stats %}
+			<div class="container">
+			<a href="{{url_for('main_bp.other_usr_page', other_usr=stat.user_owner)}}">{{stat.user_owner}}</a>
+			</div>
+			<div class="container"> 
+			<p>Number of Cookbooks:{{stat.ckbk_number}}</p>
+			</div>
+			<div class="container">
+			<p>Number of Recipes:{{stat.recipe_number}}</p>
+			</div>
+			<div class="container">
+			<p><b>-----------------------------------------------------------------------------------</b></p>
+			</div>
+		{% endfor %}
+	{% endfor %}
+{% endblock %}

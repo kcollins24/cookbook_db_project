@@ -1,0 +1,62 @@
+{% block content %}
+  <div class="form-wrapper">
+
+    <h1>Create a Recipe</h1>
+    <p>Please make sure all fields are filled out </p>
+
+    <form method="POST" action="">
+      {{ form.csrf_token }}
+
+      <fieldset class="title">
+        {{ form.title.label }}
+        {{ form.title(placeholder='Chocolate Cake') }}
+      </fieldset>
+
+      <fieldset class="authors">
+        {{ form.authors.label }}
+        {{ form.authors(placeholder='Kate') }}
+      </fieldset>
+
+      <fieldset class="cooking_time">
+        {{ form.cooking_time.label }}
+        {{ form.cooking_time(placeholder='1 hour') }}
+      </fieldset>
+
+      <fieldset class="yield">
+        {{ form.amount.label }}
+        {{ form.amount(placeholder='8 servings') }}
+      </fieldset>
+
+      <fieldset class="ingredients">
+        {{ form.ingredients.label }}
+        {{ form.ingredients(placeholder='2 eggs, 1 cup flour, etc', cols="50",rows="20") }}
+      </fieldset>
+
+      <fieldset class="instructions">
+        {{ form.instructions.label }}
+        {{ form.instructions(placeholder='Whisk together butter and sugar...', cols="50",rows="20") }}
+      </fieldset>
+
+     <fieldset class="description">
+        {{ form.description.label }}
+        {{ form.description(placeholder='My husbands favorite cake') }}
+      </fieldset>
+
+      <fieldset class="category">
+        {{ form.category.label }}
+        {{ form.category(placeholder='Dessert') }}
+      </fieldset>
+
+      <fieldset class="main_ingredient">
+        {{ form.main_ingredient.label }}
+        {{ form.main_ingredient(placeholder='Chocolate') }}
+      </fieldset>
+
+      <div class="submit-button">
+        {{ form.submit }}
+      </div>
+
+    </form>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,82 @@
+
+{% block content %}
+<head>
+<style>
+.buttonsection {
+  position: absolute;
+    /*left: 36%;*/
+    top: 50%;
+}
+</style>
+</head>
+<body>
+  
+<head>
+<style>
+
+body{background-image:url("{{ url_for('static', filename='/img/veggie_repeat1.jpg') }}");}
+
+.button {
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+}
+
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button2 {
+  background-color: white;
+  color: black;
+  border: 2px solid #008CBA;
+  border-radius: 8px;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.container {
+  display: flex;
+  justify-content: center; /* center the child */
+}
+h1 {
+    display: flex;
+    /* margin: 0 auto; or use auto left/right margin instead of justify-content center */
+    padding:5px;font-size:35px;background-color:green;color:#ffffff;
+}
+
+</style>
+
+</head>
+<body>
+<div class="container">
+  <h1> Welcome, please signup or login to continue.</h1>
+</div>
+<div class="container">
+<div class="buttonsection">
+  <a href={{url_for('auth_bp.signup')}} class="button button1">Signup</a>
+  <a href={{url_for('auth_bp.login')}} class="button button2">Login</a>
+</div>
+</div>
+
+</body>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+
+{% block content %}
+
+<head>
+<style>
+body{background-image:url("{{ url_for('static', filename='/img/veggie_repeat1.jpg') }}");}
+.container {
+  display: flex;
+  justify-content: center; /* center the child */
+}
+h1 {
+    display: flex;
+    padding:5px;font-size:35px;background-color:green;color:#ffffff;
+}
+
+p {
+    display: flex;
+    padding:5px;font-size:35px;background-color:green;color:#ffffff;
+}
+
+a {
+    /*display: flex;*/
+    padding:5px;font-size:20px;background-color:white;color:hotpink;
+}
+
+</style>
+</head>
+
+<div class="container">
+  <h1>{{ body }}</h1>
+</div>
+<div class="container">
+  <p> Hi {{current_user.name}} </break>!
+</div>
+<div class="container">
+  <a href="{{url_for('main_bp.ckbk_creation')}}">Create a new cookbook</a>
+</div>
+<div class="container">
+  <p>+++</p>
+</div>
+<div class="container">
+  <a href="{{url_for('main_bp.search')}}">Search</a>
+</div>
+<div class="container">
+  <p>+++</p>
+</div>
+<div class="container">
+  <a href="{{ url_for('main_bp.logout') }}">Log out</a>
+</div>
+<div class="container">
+  <p>+++</p>
+</div>
+<div class="container">
+  <a href="{{ url_for('main_bp.stats') }}">Site Statistics</a>
+</div>
+<div class="container">
+  <h1> Your cookbooks: </h1>
+</div>
+	{% for book in cookbooks %}
+		<div class="container">
+		<a href="{{url_for('main_bp.dis_ckbk', cid=book.id)}}">{{book.title}}</a>
+		</div>
+	{% endfor %}
+
+{% endblock %}

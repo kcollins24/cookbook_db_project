@@ -1,0 +1,58 @@
+{% block content %}
+<head>
+<style>
+body{background-image:url("{{ url_for('static', filename='/img/veggie_repeat1.jpg') }}");}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center the child */
+}
+h1 {
+    padding:5px;font-size:35px;color:#ffffff;
+}
+h1 span{
+   background-color:green;
+}
+
+p {
+    padding:5px;font-size:20px;color:darkgreen;
+}
+p span{
+   background-color:white;
+}
+
+a {
+    padding:5px;font-size:20px;background-color:white;color:hotpink;
+}
+
+</style>
+</head>
+        {% for recipe in recipes %}
+		<h1><span>Title: {{recipe.title}}</span> </h1>
+		<p><span>Authors: {{recipe.authors}}</span> </p>
+		<p><span>Description: {{recipe.description}} </span></p>
+		<p><span>Category: {{recipe.category}}</span> </p>
+		<p><span>Main Ingredient: {{recipe.main_ingredient}}</span> </p>
+		<p><span>url: {{recipe.url}}</span> </p>
+		<p><span>Cooking Time: {{recipe.cooking_time}}</span> </p>
+		<p><span>Yield: {{recipe.amount}}</span> </p>
+		<p><span>Ingredients: {{recipe.ingredients}}</span> </p>
+		<p><span>Instructions: {{recipe.instructions}}</span> </p>
+		{% set ckbk_owner = recipe.ckbk_owner %}
+		{% if recipe.user_owner == current_user.name %}
+			<a href="{{url_for('main_bp.edit_recipe')}}">Edit Recipe</a>
+		{% endif %}
+        {% endfor %}
+
+	<a href="{{url_for('main_bp.leave_review')}}">Leave a Comment</a>
+
+		<h1><span> Reviews</span> </h1>
+	{% for comment in comments %}
+		<p> <span>comment: {{comment.comment}}
+		    stars: {{comment.stars}}</span> </p>
+		<p><span> ----------------------------------------------------------------------------------</span></p>
+	{% endfor %}
+	<a href="{{url_for('main_bp.usr_page',usr=current_user)}}">Return to User Page</a>
+	<a href="{{url_for('main_bp.dis_ckbk',cid=ckbk_owner)}}"Return to Cookbook</a>
+{% endblock %}
+
